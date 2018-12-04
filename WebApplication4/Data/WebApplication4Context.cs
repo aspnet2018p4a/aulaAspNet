@@ -43,7 +43,7 @@ namespace WebApplication4.Models
             modelBuilder.Entity<Mesa>()
                 .HasOne(um => um.TipoJogo)
                 .WithMany(u => u.Mesas)
-                .HasForeignKey(um => um.TipJogoId);
+                .HasForeignKey(um => um.TipoJogoId);
         }
     
     }
