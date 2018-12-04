@@ -16,6 +16,7 @@ namespace WebApplication4.Controllers
         IJogoService _jogoService;
         public MovesController(IJogoService jogoService)
         {
+            // Alteração B 1
             _jogoService = jogoService;
         }
 
