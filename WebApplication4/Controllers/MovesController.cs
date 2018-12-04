@@ -9,7 +9,7 @@ using WebApplication4.Data;
 
 namespace WebApplication4.Controllers
 {
-    // Alteração A 1
+    // Alteração A 2
     [Route("api/[controller]")]
     [ApiController]
     public class MovesController : ControllerBase
