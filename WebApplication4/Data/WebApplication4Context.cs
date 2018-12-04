@@ -30,7 +30,15 @@ namespace WebApplication4.Models
                 .HasOne(um => um.Usuario)
                 .WithMany(u => u.MesasUsuarios)
                 .HasForeignKey(um => um.UsuarioId);
-        }
 
+            modelBuilder.Entity<Usuario>()
+                .Property(u => u.Vitorias)
+                .HasDefaultValue(0);
+
+            modelBuilder.Entity<Usuario>()
+              .Property(u => u.Derrotas)
+              .HasDefaultValue(0);
+        }
+    
     }
 }

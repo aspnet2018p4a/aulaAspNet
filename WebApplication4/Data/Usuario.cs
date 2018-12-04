@@ -31,6 +31,8 @@ namespace WebApplication4.Data
         public string Cidade { get; set; }
         public string Uf { get; set; }
         public int Tipo { get; set; }
+        public int Vitorias { get; set; }
+        public int Derrotas { get; set; }
         public ICollection<MesaUsuario> MesasUsuarios { get; set; }
     }
 }
