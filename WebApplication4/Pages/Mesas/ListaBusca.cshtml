@@ -17,15 +17,20 @@
             <td>@mesa.Nome</td>
             <td>
                 @foreach (MesaUsuario mu in mesa.MesasUsuarios)
-                    {
+                {
                 @if (mesa.MesasUsuarios.First() != mu)
-                        {
+                {
                 @:,
                         }
                 @mu.Usuario.Nome
-                    }
+                }
             </td>
-            <td><button type="button" onclick="entrar(@mesa.MesaId)" class="btn btn-sm">Entrar</button></td>
+            <td>
+                @if (mesa.MesasUsuarios.Count() < 2)
+                {
+                    <button type="button" onclick="entrar(@mesa.MesaId)" class="btn btn-sm">Entrar</button>
+                }
+                </td>
         </tr>
         }
         @if (Model.mesas.Count == 0)
