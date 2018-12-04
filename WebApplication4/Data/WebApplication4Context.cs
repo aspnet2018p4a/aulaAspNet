@@ -16,6 +16,7 @@ namespace WebApplication4.Models
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Mesa> Mesas { get; set; }
         public DbSet<MesaUsuario> MesasUsuarios { get; set; }
+        public DbSet<TipoJogo> TipoJogo { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MesaUsuario>()
@@ -38,6 +39,11 @@ namespace WebApplication4.Models
             modelBuilder.Entity<Usuario>()
               .Property(u => u.Derrotas)
               .HasDefaultValue(0);
+
+            modelBuilder.Entity<Mesa>()
+                .HasOne(um => um.TipoJogo)
+                .WithMany(u => u.Mesas)
+                .HasForeignKey(um => um.TipJogoId);
         }
     
     }
