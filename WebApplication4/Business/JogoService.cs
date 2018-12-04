@@ -16,6 +16,21 @@ namespace WebApplication4.Business
         {
             _context = context;
         }
+
+        public int RetornarQuantidadeMesas()
+        {
+            //retorna quantidade de mesas
+
+            List<MesaUsuario> mesasUsuarios =
+                 _context.MesasUsuarios.ToList();
+            List<Mesa> mesas = new List<Mesa>();
+            foreach (MesaUsuario mu in mesasUsuarios)
+            {
+                mesas.Add(mu.Mesa);
+            }
+            return mesas.Count();
+        }
+
         public List<Mesa> ListarMesasDoUsuario(string cpf)
         {
             Usuario usuario = _context.Usuario
@@ -300,6 +315,7 @@ namespace WebApplication4.Business
 
     public interface IJogoService
     {
+        int RetornarQuantidadeMesas();
         List<Mesa> ListarMesa(int usuarioId);
         List<Mesa> ListarMesaApenasUmJogador();
         List<Mesa> ListarMesasDoUsuario(string cpf);
