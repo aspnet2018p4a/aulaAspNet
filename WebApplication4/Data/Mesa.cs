@@ -17,8 +17,11 @@ namespace WebApplication4.Data
         public string Configuracao { get; set; } // white
         public string Estado { get; set; } // FEN
         public ICollection<MesaUsuario> MesasUsuarios { get; set; }
+        public int TipJogoId { get; set; }
+        public TipoJogo TipoJogo { get; set; }
     }
-    public class MesaUsuario {
+    public class MesaUsuario
+    {
         public int MesaId { get; set; }
         public Mesa Mesa { get; set; }
         public int UsuarioId { get; set; }
