@@ -18,8 +18,18 @@ namespace WebApplication4.Pages.Mesas
         {
             _jogoService = jogoService;
         }
+
+        public List<Mesa> mesas { get; set; }
+
         public void OnGet()
         {
+            int? usuarioId =
+               HttpContext.Session.GetInt32("usuarioId");
+            if (!usuarioId.HasValue)
+            {
+                throw new Exception("Erro de permissão");
+            }
+            mesas = _jogoService.ListarMesaApenasUmJogador();
         }
     }
 }
