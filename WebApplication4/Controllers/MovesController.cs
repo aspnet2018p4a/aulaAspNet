@@ -14,6 +14,7 @@ namespace WebApplication4.Controllers
     [ApiController]
     public class MovesController : ControllerBase
     {
+        // Alteração B 3    
         IJogoService _jogoService;
         public MovesController(IJogoService jogoService)
         {
