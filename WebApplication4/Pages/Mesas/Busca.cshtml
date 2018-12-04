@@ -17,7 +17,45 @@
     </div>
     <button type="button" onclick="buscar()" class="btn btn-primary btn-sm">Buscar</button>
 </form>
-<form method="post" id="lista"></form>
+<form method="post" id="lista">
+    <table class="table table-hover">
+        <thead>
+        <th>Nome</th>
+        <th>Usuários</th>
+        <th></th>
+        </thead>
+        <tbody>
+            @foreach (Mesa mesa in Model.mesas)
+            {
+                <tr>
+                    <td>@mesa.Nome</td>
+                    <td>
+                        @foreach (MesaUsuario mu in mesa.MesasUsuarios)
+                        {
+                            @if (mesa.MesasUsuarios.First() != mu)
+                            {
+                                @:,
+                            }
+                            @mu.Usuario.Nome
+                        }
+                    </td>
+                    <td><button type="button" onclick="entrar(@mesa.MesaId)" class="btn btn-sm">Entrar</button></td>
+                </tr>
+            }
+            @if (Model.mesas.Count == 0)
+            {
+                <tr>
+                    <td colspan="3">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div asp-validation-for="Cpf" class="text-danger"></div>
+                        <div asp-validation-for="NomeUsuario" class="text-danger"></div>
+                    </td>
+                </tr>
+                <tr><td colspan="3">Nenhuma mesa encontrada</td></tr>
+            }
+        </tbody>
+    </table>
+</form>
 @section Scripts {
     <script>
         function buscar() {

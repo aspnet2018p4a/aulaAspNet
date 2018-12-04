@@ -67,6 +67,25 @@ namespace WebApplication4.Business
             }
             return mesas;
         }
+
+        public List<Mesa> ListarMesaApenasUmJogador()
+        {
+            List<MesaUsuario> mesasUsuarios =
+                _context.MesasUsuarios
+                .Include(mu => mu.Mesa) // mesas do usuarioId
+                .ThenInclude(m => m.MesasUsuarios) // os usuários na mesa
+                .ThenInclude(mu2 => mu2.Usuario).ToList();
+            List<Mesa> mesas = new List<Mesa>();
+            foreach (MesaUsuario mu in mesasUsuarios)
+            {
+                if(mu.Mesa.MesasUsuarios.Count() == 1)
+                {
+                    mesas.Add(mu.Mesa);
+                }
+            }
+            return mesas;
+        }
+
         public void MontarMesa(string nome, int usuarioId)
         {
             Mesa mesa = new Mesa { Nome = nome };
@@ -282,6 +301,7 @@ namespace WebApplication4.Business
     public interface IJogoService
     {
         List<Mesa> ListarMesa(int usuarioId);
+        List<Mesa> ListarMesaApenasUmJogador();
         List<Mesa> ListarMesasDoUsuario(string cpf);
         List<Mesa> ListarMesasDoUsuarioPeloNome(string nome);
         void EntrarMesa(int usuarioId, int mesaId);
