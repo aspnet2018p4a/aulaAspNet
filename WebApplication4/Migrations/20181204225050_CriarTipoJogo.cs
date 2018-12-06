@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace WebApplication4.Migrations
 {
@@ -17,7 +18,8 @@ namespace WebApplication4.Migrations
                 columns: table => new
                 {
                     TipoJogoId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn),
                     Nome = table.Column<string>(nullable: true),
                     Url = table.Column<string>(nullable: true),
                     MinJogadores = table.Column<int>(nullable: false),

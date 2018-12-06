@@ -30,20 +30,23 @@ namespace WebApplication4.Pages.Usuarios
         [HttpPost]
         public IActionResult OnPost()
         {
-            if (!DigitosUtil.IsCpf(usuario.Cpf))
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("usuario.Cpf", "CPF inválido");
-            }
-            Usuario us = _context.Usuario.Where(u => u.Email == usuario.Email).FirstOrDefault();
-            if (us != null)
-            {
-                ModelState.AddModelError("", "Email já cadastrado");
-            }
-            if (ModelState.ErrorCount == 0)
-            {
-                _context.Usuario.Add(usuario);
-                _context.SaveChanges();
-                return RedirectToPage("./Index");
+                if (!DigitosUtil.IsCpf(usuario.Cpf))
+                {
+                    ModelState.AddModelError("usuario.Cpf", "CPF inválido");
+                }
+                Usuario us = _context.Usuario.Where(u => u.Email == usuario.Email).FirstOrDefault();
+                if (us != null)
+                {
+                    ModelState.AddModelError("", "Email já cadastrado");
+                }
+                if (ModelState.ErrorCount == 0)
+                {
+                    _context.Usuario.Add(usuario);
+                    _context.SaveChanges();
+                    return RedirectToPage("./Index");
+                }
             }
             return Page();
         }

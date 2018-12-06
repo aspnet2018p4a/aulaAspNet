@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication4.Models;
 
 namespace WebApplication4.Migrations
 {
     [DbContext(typeof(WebApplication4Context))]
-    partial class WebApplication4ContextModelSnapshot : ModelSnapshot
+    [Migration("20181206131954_seed-TipoJogoETipoDefault")]
+    partial class seedTipoJogoETipoDefault
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,7 +37,7 @@ namespace WebApplication4.Migrations
 
                     b.Property<string>("Nome");
 
-                    b.Property<int>("TipoJogoId");
+                    b.Property<int?>("TipoJogoId");
 
                     b.Property<DateTime>("UltimoLance");
 
@@ -129,8 +131,7 @@ namespace WebApplication4.Migrations
                 {
                     b.HasOne("WebApplication4.Data.TipoJogo", "TipoJogo")
                         .WithMany("Mesas")
-                        .HasForeignKey("TipoJogoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("TipoJogoId");
                 });
 
             modelBuilder.Entity("WebApplication4.Data.MesaUsuario", b =>
