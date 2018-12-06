@@ -16,6 +16,11 @@
                   class="text-danger"></span>
         </div>
         <button type="button" onclick="criarMesa()" class="btn btn-sm">Criar Nova</button>
+        @* inserir a quantidade de mesas aqui: *@
+        <br />
+        <br />
+        <label for="QtdMesas">Quantidade de mesas</label>
+        <input type="text" id="QtdMesas" disabled />
     </form>
 </div>
 <form method="post">
@@ -80,6 +85,7 @@
                         alert(data.resp);
                         // após a criação carrega a tabela de mesas
                         $('#formMesas').load('/mesas/ListaMinhasMesas');
+                        obterQtdMesa();
                     } else {
                         alert('Ocorreu um erro de comunicação');
                     }
@@ -122,6 +128,7 @@
                         alert(data.resp);
                         // após a criação carrega a tabela de mesas
                         $('#formMesas').load('/mesas/ListaMinhasMesas');
+                        obterQtdMesa();
                     } else {
                         alert('Ocorreu um erro de comunicação');
                     }
@@ -130,5 +137,22 @@
                     alert(xhr.statusText);
                 });
         }
+
+        function obterQtdMesa() {
+            $.getJSON('/api/totais')
+                .done(function (data) {
+                    // {QuantidadeMesas : 2}
+                    if (data && data.quantidadeMesas) {
+                        // após a criação carrega a tabela de mesas
+                        $('#QtdMesas').val(data.quantidadeMesas);
+                    } else {
+                        alert('Ocorreu um erro de comunicação');
+                    }
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    alert(xhr.statusText);
+                });
+        }
+        obterQtdMesa();
     </script>
 }

@@ -9,7 +9,7 @@ namespace WebApplication4.Data
     public class TipoJogo
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int TipoJogoId { get; set; }
+        public int? TipoJogoId { get; set; }
         public string Nome { get; set; }
         public string Url { get; set; }
         public int MinJogadores { get; set; }
