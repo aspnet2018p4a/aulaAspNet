@@ -8,7 +8,7 @@ namespace WebApplication4.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(
-                @"INSERT TipoJogo
+                @"INSERT into TipoJogo
                     (Nome, Url, MinJogadores, MaxJogadores)
                     values
                     ('Xadrez', '/Mesas/MesaChess', 2, 2);");
