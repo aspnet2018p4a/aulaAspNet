@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label for="usuario.Cpf">Cpf</label>
-                <input type="text" name="usuario.Cpf" value="@Model.usuario.Cpf" class="form-control" placeholder="Cpf" />
+                <input type="text" asp-for="usuario.Cpf" class="form-control" placeholder="Cpf" />
                 <span asp-validation-for="usuario.Cpf" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -48,19 +48,19 @@
                     texto qualquer
                 </div>
             </div>
-            <div class="collapse" id="collapseForm">
+            <div class="form-group">
                 <label>Endereço</label>
-                <input type="text" name="usuario.Logradouro" id="logradouro" class="form-control" />
+                <input type="text" asp-for="usuario.Logradouro" id="logradouro" class="form-control" />
                 <label>Numero</label>
-                <input type="text" name="usuario.Numero" class="form-control" />
+                <input type="text" asp-for="usuario.Numero" class="form-control" />
                 <label>Complemento</label>
-                <input type="text" name="usuario.Complemento" class="form-control" />
+                <input type="text" asp-for="usuario.Complemento" class="form-control" />
                 <label>Bairro</label>
-                <input type="text" name="usuario.Bairro" id="bairro" class="form-control" />
+                <input type="text" asp-for="usuario.Bairro" id="bairro" class="form-control" />
                 <label>Cidade</label>
-                <input type="text" name="usuario.Cidade" id="cidade" class="form-control" />
+                <input type="text" asp-for="usuario.Cidade" id="cidade" class="form-control" />
                 <label>UF</label>
-                <input type="text" name="usuario.Uf" id="uf" class="form-control" />
+                <input type="text" asp-for="usuario.Uf" id="uf" class="form-control" />
             </div>
             <hr />
             <button class="btn btn-primary">Enviar</button>
@@ -77,16 +77,14 @@
                 if (resp.erro) {
                     // cep não encontrado
                     document.querySelector("#ender").innerHTML="Cep não encontrado";
-                    $('#collapseExample').collapse('show');
-                    $('#collapseForm').collapse('hide');
+                    
                 } else {
                     // preenche os campos do endereço
                     document.querySelector("#logradouro").value = resp.logradouro;
                     document.querySelector("#bairro").value = resp.bairro;
                     document.querySelector("#cidade").value = resp.localidade;
                     document.querySelector("#uf").value = resp.uf;
-                    $('#collapseExample').collapse('hide');
-                    $('#collapseForm').collapse('show');
+                   
                 }
             });
     }
