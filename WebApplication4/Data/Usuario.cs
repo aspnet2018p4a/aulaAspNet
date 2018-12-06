@@ -21,6 +21,7 @@ namespace WebApplication4.Data
         public DateTime DataNascimento { get; set; }
 
         [RegularExpression(@"\d{9}-\d{2}", ErrorMessage = "CPF deve estar no formato 000000000-00")]
+        [Required(ErrorMessage = "Cpf é obrigatório")]
         public string Cpf { get; set; }
         [RegularExpression(@"\d\d\d\d\d-\d\d\d", ErrorMessage = "CEP deve estar no formato 00000-000")]
         public string Cep { get; set; }
