@@ -17,7 +17,7 @@ namespace WebApplication4.Data
         public string Configuracao { get; set; } // white
         public string Estado { get; set; } // FEN
         public ICollection<MesaUsuario> MesasUsuarios { get; set; }
-        public int TipoJogoId { get; set; }
+        public int? TipoJogoId { get; set; }
         public TipoJogo TipoJogo { get; set; }
     }
     public class MesaUsuario
